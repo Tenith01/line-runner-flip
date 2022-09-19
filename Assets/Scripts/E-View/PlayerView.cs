@@ -4,7 +4,6 @@ using Zenject;
 
 public class PlayerView : MonoBehaviour
 {
-
     [Inject] private IPlayerPresenter playerPresenter;
 
     private void Start()
@@ -17,6 +16,7 @@ public class PlayerView : MonoBehaviour
         if (rotateValue > 0)
         {
             transform.position =new Vector3(-4.04f, 0.8f, 0f);
+
         }
         else
         {

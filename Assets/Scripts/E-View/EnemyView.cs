@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
@@ -6,8 +7,8 @@ using UnityEngine;
 
 public class EnemyView : MonoBehaviour
 {
-    [SerializeField] 
-    private float speed;
+    
+    public float speed;
     void Start()
     {
         this.UpdateAsObservable().Subscribe(_ => MoveToLeft()).AddTo(this);
@@ -16,5 +17,15 @@ public class EnemyView : MonoBehaviour
     private void MoveToLeft()
     {
         transform.Translate(speed * Time.deltaTime * Vector2.left) ;
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        
+        if (col.gameObject.CompareTag("DestroyPoint"))
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }
