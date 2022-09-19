@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 public class EnemyView : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] 
+    private float speed;
     void Start()
     {
-        
+        this.UpdateAsObservable().Subscribe(_ => MoveToLeft()).AddTo(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void MoveToLeft()
     {
-        
+        transform.Translate(speed * Time.deltaTime * Vector2.left) ;
     }
 }

@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnMachinePresenter : MonoBehaviour
+public interface IEnemySpawnMachinePresenter
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public class EnemySpawnMachinePresenter : MonoBehaviour, IEnemySpawnMachinePresenter
+{
+    
 }
