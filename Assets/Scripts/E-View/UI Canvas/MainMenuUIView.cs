@@ -9,5 +9,6 @@ public class MainMenuUIView : MonoBehaviour
     public void StartRunning()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
     }
 }

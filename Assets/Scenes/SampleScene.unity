@@ -1537,7 +1537,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1197531503
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &823288968
@@ -1793,7 +1793,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 932085514}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 823288969}
+        m_TargetAssemblyTypeName: MainMenuUIView, Assembly-CSharp
+        m_MethodName: StartRunning
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &932085514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2125,7 +2137,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1197531503
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1354983951
@@ -2164,7 +2176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1395873658}
-  MainMenu: {fileID: 0}
+  MainMenu: {fileID: 823288964}
 --- !u!1 &1372917172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2513,7 +2525,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1197531503
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1546356447

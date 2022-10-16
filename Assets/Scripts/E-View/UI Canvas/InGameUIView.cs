@@ -21,6 +21,7 @@ public class InGameUIView : MonoBehaviour
     {
         gameObject.SetActive(false);
         MainMenu.SetActive(true);
+        Time.timeScale = 0f;
         
     }
 }
