@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using C_Usecase;
 using UnityEngine;
+using Zenject;
 
 public interface IEnemySpawnMachinePresenter
 {
@@ -9,6 +11,7 @@ public interface IEnemySpawnMachinePresenter
 
 public class EnemySpawnMachinePresenter : MonoBehaviour, IEnemySpawnMachinePresenter
 {
+    [Inject] private IEnemySpawnMachineUsecase _enemySpawnMachineUsecase;
     private float speed;
     
     public void SpawnEnemy(GameObject enemy, Transform spawnPosition)

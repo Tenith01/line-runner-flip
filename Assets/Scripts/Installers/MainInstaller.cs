@@ -1,8 +1,14 @@
+using A_Entity;
+using C_Usecase;
+using UnityEngine;
 using Zenject;
 
 public class MainInstaller : MonoInstaller
 {
     // ReSharper disable Unity.PerformanceAnalysis
+    
+    [SerializeField]
+    private GameObject enemyPrefab;
     public override void InstallBindings()
     {
         //Gateway
@@ -12,6 +18,7 @@ public class MainInstaller : MonoInstaller
         //UseCase
         //Without MonoBehaviours
         Container.Bind<IPlayerUseCase>().To<PlayerUseCase>().AsSingle();
+        Container.Bind<IEnemySpawnMachineUsecase>().To<EnemySpawnMachineUsecase>().AsSingle();
         // Container.Bind<ISessionUsecase>().To<SessionUsecase>().AsSingle().NonLazy();
         // Container.Bind<IPlayerPresenter>().To<PlayerPresenter>().AsSingle();
 
@@ -21,7 +28,11 @@ public class MainInstaller : MonoInstaller
         Container.Bind<IPlayerPresenter>().To<PlayerPresenter>().FromNewComponentOn(gameObject).AsSingle().NonLazy();
 
 
-        //View
-        //
+        //Enemy Installer
+        Container.BindFactory<EnemyData, EnemyView, EnemyView.Factory>()
+            .FromSubContainerResolve()
+            .ByNewContextPrefab<EnemySubInstaller>(enemyPrefab)
+            .AsSingle();
+        
     }
 }
