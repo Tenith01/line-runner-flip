@@ -12,6 +12,9 @@ public class InGameUIView : MonoBehaviour
 
     [SerializeField] 
     private GameObject MainMenu;
+    
+    [SerializeField] 
+    private GameObject player;
     private void Start()
     {
         _sessionPresenter.scoreRx.Subscribe(score => scoreText.text = "Score : " + score.ToString()).AddTo(this);
@@ -20,8 +23,8 @@ public class InGameUIView : MonoBehaviour
     public void ShowMenMenu()
     {
         gameObject.SetActive(false);
+        player.SetActive(false);
         MainMenu.SetActive(true);
         Time.timeScale = 0f;
-        
     }
 }

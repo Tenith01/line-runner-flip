@@ -8,6 +8,8 @@ public interface ISessionPresenter
     IObservable<int> scoreRx { get; }
     public void PrintScore();
     void AddScore(int score);
+
+    void SetScoreToZero();
 }
 
 public class SessionPresenter : MonoBehaviour, ISessionPresenter
@@ -23,5 +25,10 @@ public class SessionPresenter : MonoBehaviour, ISessionPresenter
     public void AddScore(int score)
     {
         _sessionUsecase.AddScore(score);
+    }
+
+    public void SetScoreToZero()
+    {
+        _sessionUsecase.SetScoreToZero();
     }
 }

@@ -8,11 +8,13 @@ public class PlayerView : MonoBehaviour
     [Inject] private ISessionPresenter _sessionPresenter;
     [Inject] private IPlayerPresenter playerPresenter;
 
+    [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private GameObject inGameUICanvas;
+
     private void Start()
     {
         playerPresenter.moveInputStream.Subscribe(RotatePlayer);
         this.OnTriggerEnter2DAsObservable().Subscribe(collider => AddScore(collider)).AddTo(this);
-        ;
     }
 
     private void RotatePlayer(float rotateValue)
@@ -35,6 +37,11 @@ public class PlayerView : MonoBehaviour
         }
         else if (collider2D.gameObject.CompareTag("Enemy"))
         {
+            gameObject.SetActive(false);
+            inGameUICanvas.SetActive(false);
+            gameOverCanvas.SetActive(true);
+            Time.timeScale = 0;
+            
         }
     }
 }

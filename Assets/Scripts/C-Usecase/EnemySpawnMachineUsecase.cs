@@ -14,6 +14,14 @@ namespace C_Usecase
     {
         public void SpawnEnemy(float speed, Transform upSpawnPoint, Transform downSpawnPoint)
         {
+            if (Random.Range(0, 1) == 0)
+            {
+                
+            }
+            else
+            {
+                
+            }
         }
     }
 }

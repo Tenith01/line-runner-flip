@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using A_Entity;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 public class EnemySpawnMachineView : MonoBehaviour
 {
@@ -13,12 +14,27 @@ public class EnemySpawnMachineView : MonoBehaviour
     private Transform downSpawnPoint;
 
     [Inject] private IEnemySpawnMachinePresenter _enemySpawnMachinePresenter;
-
-    [Inject] private EnemyView.Factory _factory;
+    
     private void Start()
     {
-        // _enemySpawnMachinePresenter.SpawnEnemy(enemy[0],upSpawnPoint);
-        var enemyData = new EnemyData(3, upSpawnPoint);
-        _factory.Create(enemyData);
+        StartCoroutine(Fade());
+       
+    }
+    
+    IEnumerator Fade()
+    {
+        while (true)
+        {
+            if (Random.Range(0,10)%2==1)
+            {
+                _enemySpawnMachinePresenter.SpawnEnemy(3,downSpawnPoint);
+            }
+            else
+            {
+                _enemySpawnMachinePresenter.SpawnEnemy(3,upSpawnPoint);
+
+            }
+            yield return new WaitForSeconds(Random.Range(4,8));
+        }
     }
 }
