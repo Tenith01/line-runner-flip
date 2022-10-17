@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -11,6 +14,11 @@ public class PlayerView : MonoBehaviour
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject inGameUICanvas;
 
+    public MMFeedbacks flipFeedback;
+    public MMFeedbacks hitFeedback;
+
+    private float _timeTresh;
+
     private void Start()
     {
         playerPresenter.moveInputStream.Subscribe(RotatePlayer);
@@ -19,15 +27,31 @@ public class PlayerView : MonoBehaviour
 
     private void RotatePlayer(float rotateValue)
     {
+        // Debug.Log("timeTrash: " + _timeTresh);
+        // Debug.Log("time: " + Time.time);
+
         if (rotateValue > 0)
         {
+            if (Time.time > _timeTresh && !transform.position.Equals((-4.04f, 0.8f, 0f)))
+            {
+                flipFeedback.PlayFeedbacks();
+            }
+
             transform.position = new Vector3(-4.04f, 0.8f, 0f);
         }
         else
         {
+            if (Time.time > _timeTresh && !transform.position.Equals((-4.04f, -0.8f, 0f)))
+            {
+                flipFeedback.PlayFeedbacks();
+            }
+
             transform.position = new Vector3(-4.04f, -0.8f, 0f);
         }
+
+        _timeTresh = Time.time + 0.1f;
     }
+
 
     private void AddScore(Collider2D collider2D)
     {
@@ -37,11 +61,20 @@ public class PlayerView : MonoBehaviour
         }
         else if (collider2D.gameObject.CompareTag("Enemy"))
         {
-            gameObject.SetActive(false);
-            inGameUICanvas.SetActive(false);
-            gameOverCanvas.SetActive(true);
-            Time.timeScale = 0;
-            
+            StartCoroutine(Fade());
+
         }
     }
+
+    IEnumerator Fade()
+    {
+        hitFeedback.PlayFeedbacks();
+        yield return new WaitForSeconds(0.5f);
+        gameObject.SetActive(false);
+        inGameUICanvas.SetActive(false);
+        gameOverCanvas.SetActive(true);
+        Time.timeScale = 0;
+        
+    }
+
 }
